@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaneez Fatema (Nuhi) & Rehan - Wedding Invitation</title>
+    <!-- Royal Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #fbf5f2;
+            --card-cream: #ffffff;
+            --wine-accent: #a86b6e;
+            --wine-dark: #3b1c24;
+            --accent-gold: #c29b53;
+            --soft-gold: #f3e5ab;
+            --dark-gold: #a38128;
+            --text-main: #3b1c24;
+            --text-muted: #7d6368;
+            --border-light: #e8d0c3;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        /* 3D EMBOSSED ENVELOPE OVERLAY */
+        .envelope-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #2a1118;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: opacity 1s cubic-bezier(0.77, 0, 0.175, 1), visibility 1s ease;
+        }
+
+        .envelope-opened {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .envelope-3d {
+            position: relative;
+            width: 320px;
+            height: 520px;
+            background: #f7ede8;
+            border-radius: 14px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.7), inset 0 0 15px rgba(194, 155, 83, 0.25);
+            overflow: hidden;
+            border: 1px solid rgba(194, 155, 83, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.8s ease;
+        }
+
+        .flap-top, .flap-bottom {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            z-index: 2;
+            transition: transform 1s ease;
+        }
+
+        .flap-top {
+            top: 0;
+            background: linear-gradient(180deg, #eddcd5 0%, #dab8ac 100%);
+            clip-path: polygon(0 0, 100% 0, 50% 55%);
+            border-bottom: 2px solid rgba(194, 155, 83, 0.5);
+            box-shadow: inset 0 3px 10px rgba(255,255,255,0.8);
+        }
+
+        .flap-bottom {
+            bottom: 0;
+            background: linear-gradient(0deg, #eddcd5 0%, #dab8ac 100%);
+            clip-path: polygon(0 100%, 100% 100%, 50% 45%);
+            border-top: 2px solid rgba(194, 155, 83, 0.5);
+        }
+
+        .emboss-pattern-top, .emboss-pattern-bottom {
+            position: absolute;
+            font-size: 32px;
+            color: rgba(163, 129, 40, 0.3);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px;
+            pointer-events: none;
+        }
+
+        .emboss-pattern-top { top: 25px; }
+        .emboss-pattern-bottom { bottom: 25px; }
+
+        /* WAX SEAL STAMP */
+        .wax-seal-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 95px;
+            height: 95px;
+            background: radial-gradient(circle at 35% 35%, #9e5b60 0%, #4a212a 70%, #2e020a 100%);
+            border-radius: 50%;
+            z-index: 10;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6), inset 0 0 12px rgba(255,255,255,0.3);
+            border: 3px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: sealPulse 2.5s infinite;
+        }
+
+        @keyframes sealPulse {
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(194, 155, 83, 0.6); }
+            70% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 0 0 18px rgba(194, 155, 83, 0); }
+            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(194, 155, 83, 0); }
+        }
+
+        .seal-inner-ring {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            border: 1px dashed #f3e5ab;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+        }
+
+        .monogram-kr {
+            font-family: 'Great Vibes', 'Cinzel', serif;
+            font-size: 32px;
+            color: #f3e5ab;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .monogram-kr span {
+            font-size: 18px;
+            margin: 0 2px;
+            color: var(--accent-gold);
+            font-family: 'Cinzel', serif;
+        }
+
+        .tap-hint {
+            position: absolute;
+            bottom: 40px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--wine-dark);
+            font-weight: 600;
+            z-index: 5;
+            text-transform: uppercase;
+            background: rgba(255,255,255,0.6);
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        /* MAIN APP CONTAINER */
+        .app-container {
+            max-width: 430px;
+            margin: 0 auto;
+            padding: 30px 20px 60px;
+            background: var(--bg-cream);
+            position: relative;
+        }
+
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 28px;
+            color: var(--wine-accent);
+            margin: 15px 0 8px;
+            font-weight: 700;
+        }
+
+        .sub-title {
+            font-size: 9px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .couple-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            color: var(--wine-dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .couple-title span {
+            font-family: 'Great Vibes', cursive;
+            font-size: 30px;
+            font-weight: 400;
+            color: var(--accent-gold);
+            display: inline-block;
+            margin-left: 5px;
+        }
+
+        .parent-info {
+            font-size: 11px;
+            letter-spacing: 1px;
+            color: var(--dark-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .and-symbol {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--wine-accent);
+            margin: 10px 0;
+        }
+
+        .action-btns {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 30px;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--accent-gold);
+            background: var(--card-cream);
+            color: var(--wine-dark);
+            padding: 10px 22px;
+            border-radius: 20px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .card-box {
+            background: var(--card-cream);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin: 22px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 26px;
+            color: var(--wine-accent);
+            line-height: 1.8;
+            direction: rtl;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .verse-translation {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* OVAL ROYAL SCRATCH CARD */
+        .scratch-section-wrap {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .scratch-container {
+            position: relative;
+            width: 290px;
+            height: 180px;
+            margin: 10px auto;
+        }
+
+        .scratch-secret-content {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, #fff2f5 0%, #fce1e6 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            border: 2px solid var(--accent-gold);
+            padding: 20px 25px;
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(194, 155, 83, 0.2);
+        }
+
+        canvas#scratchCanvas {
+            position: absolute;
+            top: 0; left: 0;
+            cursor: pointer;
+            z-index: 5;
+            touch-action: none;
+        }
+
+        /* WAX NOTE */
+        .wax-seal-container {
+            cursor: pointer;
+            margin: 30px 0;
+        }
+
+        .wax-badge {
+            width: 60px; height: 60px;
+            background: radial-gradient(circle, var(--wine-accent), var(--wine-dark));
+            border-radius: 50%;
+            border: 2px solid var(--accent-gold);
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(168, 107, 110, 0.3);
+        }
+
+        .wax-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            font-size: 16px;
+            color: var(--wine-dark);
+            line-height: 1.8;
+            font-family: 'Amiri', serif;
+            direction: rtl;
+        }
+
+        .wax-content.active {
+            max-height: 250px;
+            margin-top: 15px;
+        }
+
+        /* SPECIAL GIFT NOTE CARD */
+        .gift-note-card {
+            background: var(--card-cream);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 20px;
+            margin: 25px 0;
+            font-size: 13px;
+            color: var(--wine-dark);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        /* EVENTS SECTION */
+        .section-header {
+            font-family: 'Cinzel', serif;
+            font-size: 22px;
+            color: var(--wine-dark);
+            margin: 30px 0 15px;
+        }
+
+        .event-card {
+            background: var(--card-cream);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 22px 18px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 18px;
+        }
+
+        .single-event-card {
+            background: #fffdf9;
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 25px 20px;
+            position: relative;
+            box-shadow: 0 6px 20px rgba(194, 155, 83, 0.12);
+            margin-top: 10px;
+        }
+
+        .event-badge-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 22px;
+            color: var(--wine-accent);
+            display: block;
+            margin-bottom: 4px;
+            font-weight: bold;
+        }
+
+        .event-date {
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--dark-gold);
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .hijri-date {
+            font-family: 'Amiri', serif;
+            font-size: 14px;
+            color: var(--wine-accent);
+            margin: 2px 0 10px;
+            font-weight: 600;
+        }
+
+        .event-name {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--wine-dark);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .event-details-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* TIMER */
+        .timer-box {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 18px 0;
+        }
+
+        .time-card {
+            background: var(--wine-dark);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 10px;
+            min-width: 62px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .time-card span {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--soft-gold);
+            display: block;
+        }
+
+        .time-card label {
+            font-size: 8px;
+            letter-spacing: 1px;
+            color: #d8b2b5;
+            text-transform: uppercase;
+        }
+
+        /* ROYAL FOOTER WITH ARABIC JAZAKALLAH */
+        .royal-footer-card {
+            background: var(--card-cream);
+            border: 1px solid var(--accent-gold);
+            border-radius: 16px;
+            padding: 25px 20px;
+            margin-top: 40px;
+            box-shadow: 0 6px 20px rgba(194, 155, 83, 0.15);
+            position: relative;
+        }
+
+        .royal-footer-card::before, .royal-footer-card::after {
+            content: '✦';
+            color: var(--accent-gold);
+            font-size: 12px;
+            display: block;
+            margin: 4px auto;
+        }
+
+        .footer-invitation-text {
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .footer-family-name {
+            font-family: 'Cinzel', serif;
+            font-size: 18px;
+            color: var(--wine-dark);
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        .footer-phone {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            color: var(--dark-gold);
+            text-decoration: none;
+            border: 1px solid var(--border-light);
+            padding: 5px 14px;
+            border-radius: 20px;
+            background: var(--bg-cream);
+        }
+
+        .jazakallah-arabic {
+            font-family: 'Amiri', serif;
+            font-size: 28px;
+            color: var(--wine-accent);
+            margin-top: 15px;
+            font-weight: 700;
+            direction: rtl;
+        }
+
+        /* PETAL & SPARKLE ANIMATIONS */
+        .petal-rose {
+            position: fixed;
+            top: -30px;
+            width: 16px;
+            height: 12px;
+            background: radial-gradient(circle at 30% 30%, #f4b2b6, #a86b6e);
+            border-radius: 50% 0 50% 50%;
+            box-shadow: 0 0 8px rgba(168, 107, 110, 0.4);
+            user-select: none;
+            pointer-events: none;
+            z-index: 99999;
+            animation: fallPetal linear forwards;
+        }
+
+        .petal-gold-sparkle {
+            position: fixed;
+            top: -20px;
+            width: 10px;
+            height: 10px;
+            background: radial-gradient(circle at 30% 30%, #ffffff, #c29b53);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(194, 155, 83, 0.9);
+            user-select: none;
+            pointer-events: none;
+            z-index: 99999;
+            animation: fallGoldSparkle linear forwards;
+        }
+
+        @keyframes fallPetal {
+            0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(50vh) translateX(30px) rotate(180deg); }
+            100% { transform: translateY(105vh) translateX(-30px) rotate(360deg); opacity: 0.2; }
+        }
+
+        @keyframes fallGoldSparkle {
+            0% { transform: translateY(0) translateX(0) scale(0.6) rotate(0deg); opacity: 1; }
+            50% { transform: translateY(50vh) translateX(-25px) scale(1.2) rotate(180deg); }
+            100% { transform: translateY(105vh) translateX(25px) scale(0.4) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D ROYAL EMBOSSED ENVELOPE OVERLAY -->
+    <div class="envelope-overlay" id="envelopeOverlay">
+        <div class="envelope-3d">
+            <div class="flap-top"></div>
+            <div class="emboss-pattern-top">❦ ❧</div>
+            
+            <!-- WAX SEAL STAMP -->
+            <div class="wax-seal-button" onclick="openEnvelope()">
+                <div class="seal-inner-ring">
+                    <div class="monogram-kr">K<span>&</span>R</div>
+                </div>
+            </div>
+
+            <div class="emboss-pattern-bottom">❦ ❧</div>
+            <div class="tap-hint">✦ Tap Seal To Open ✦</div>
+            <div class="flap-bottom"></div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div class="app-container">
+        <div class="bismillah">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
+        <div class="sub-title">TOGETHER WITH THEIR FAMILIES</div>
+
+        <!-- BRIDE FIRST -->
+        <div class="couple-title">Kaneez Fatema <span>(Nuhi)</span></div>
+        <div class="parent-info">Daughter of Aijaz Hanif Khan</div>
+
+        <div class="and-symbol">✦ & ✦</div>
+
+        <!-- GROOM SECOND -->
+        <div class="couple-title">Rehan <span>(Altamash)</span></div>
+        <div class="parent-info">Son of Anwar Maniyar</div>
+
+        <div class="action-btns">
+            <a href="#eventsSection" class="btn-outline">VIEW EVENT DETAILS</a>
+        </div>
+
+        <!-- QURANIC VERSE -->
+        <div class="card-box">
+            <div class="arabic-text">وَخَلَقْنَاكُمْ أَزْوَاجًا</div>
+            <div class="verse-translation">
+                "And We created you in pairs"
+                <br><span style="font-size: 10px; color: var(--dark-gold); margin-top: 6px; display: block;">- QURAN 78:8</span>
+            </div>
+        </div>
+
+        <!-- ELEGANT OVAL SCRATCH CARD SECTION -->
+        <div class="card-box">
+            <div class="sub-title" style="margin-bottom: 4px;">A LITTLE SURPRISE</div>
+            <h3 style="font-family: 'Cinzel', serif; font-size: 15px; color: var(--wine-dark);">Scratch & Reveal Date</h3>
+            
+            <div class="scratch-section-wrap">
+                <div class="scratch-container">
+                    <div class="scratch-secret-content">
+                        <!-- Urdu InshaAllah -->
+                        <div style="font-family: 'Amiri', serif; font-size: 26px; color: var(--wine-accent); font-weight: bold; line-height: 1.2;">
+                            إن شاء الله
+                        </div>
+                        <!-- Day & Date -->
+                        <h4 style="font-family: 'Cinzel', serif; font-size: 15px; color: var(--wine-dark); font-weight: 700; margin: 4px 0 2px;">
+                            Thursday, 03 Dec 2026
+                        </h4>
+                        <!-- Urdu / Hijri Date -->
+                        <p style="font-family: 'Amiri', serif; font-size: 15px; color: var(--dark-gold); font-weight: bold;">
+                            ۲۳ جمادى الآخرة ١٤٤٨ هـ
+                        </p>
+                    </div>
+                    <canvas id="scratchCanvas" width="290" height="180"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- WAX NOTE -->
+        <div class="wax-seal-container" onclick="toggleWaxNote()">
+            <div class="sub-title" style="margin-bottom: 5px;">OUR INVITATION</div>
+            <h3 style="font-family: 'Cinzel', serif; color: var(--wine-dark); margin-bottom: 12px;">Dear Family & Friends</h3>
+            <div class="wax-badge">K&R</div>
+            <p style="font-size: 10px; color: var(--dark-gold); font-weight: 600;">✦ TAP TO READ OUR NOTE ✦</p>
+            
+            <div class="wax-content" id="waxNote">
+                اللہ کا کرم ہے عنایت رسولﷺ کی<br>
+                شادی ہمارے گھر میں ہے برکت رسولﷺ کی<br>
+                امید ہے آپ بھی تشریف لائیں گے<br>
+                دعوت قبول کرنا ہے سنت رسول ﷺکی
+            </div>
+        </div>
+
+        <!-- NO GIFTS MESSAGE -->
+        <div class="gift-note-card">
+            "Your blessings mean everything. Kindly, no clothing gifts. 🤍. 🤍. 🤍"
+        </div>
+
+        <!-- ALL WEDDING EVENTS SECTION -->
+        <div id="eventsSection">
+            <div class="sub-title">CELEBRATING TOGETHER</div>
+            <div class="section-header">Wedding Events</div>
+
+            <!-- EVENT 1: QURAN KHAWANI -->
+            <div class="event-card">
+                <span class="event-badge-arabic">قرآن خوانی</span>
+                <div class="event-date">Saturday, 29 Nov 2026</div>
+                <div class="hijri-date">19 Jumada al-Akhirah 1448 AH</div>
+                <div class="event-name">Quran Khawani</div>
+                <div class="event-details-text">
+                    <strong>Time:</strong> 3:00 PM<br>
+                    <strong>Venue:</strong> At Home
+                </div>
+            </div>
+
+            <!-- EVENT 2: MEHNDI -->
+            <div class="event-card">
+                <span class="event-badge-arabic">رسمِ مہندی</span>
+                <div class="event-date">Monday, 01 Dec 2026</div>
+                <div class="hijri-date">21 Jumada al-Akhirah 1448 AH</div>
+                <div class="event-name">Mehndi Ceremony</div>
+                <div class="event-details-text">
+                    <strong>Time:</strong> 10:00 PM<br>
+                    <strong>Venue:</strong> Wahab Villa, Sainath Nagar, Nashik
+                </div>
+            </div>
+
+            <!-- EVENT 3: HALDI -->
+            <div class="event-card">
+                <span class="event-badge-arabic">رسمِ ہلدی</span>
+                <div class="event-date">Wednesday, 02 Dec 2026</div>
+                <div class="hijri-date">22 Jumada al-Akhirah 1448 AH</div>
+                <div class="event-name">Haldi Ceremony</div>
+                <div class="event-details-text">
+                    <strong>Venue:</strong> Wahab Villa, Sainath Nagar, Nashik
+                </div>
+            </div>
+
+            <!-- EVENT 4: NIKAH (MAIN HIGHLIGHTED CARD) -->
+            <div class="single-event-card">
+                <span class="event-badge-arabic">نکاح</span>
+                <div class="event-date">InshaAllah Nikah on Thursday, 03 Dec 2026</div>
+                <div class="hijri-date">23 Jumada al-Akhirah 1448 AH</div>
+                <div class="event-name">Nikkah Ceremony</div>
+                <div class="event-details-text">
+                    <strong>Time:</strong> After Maghrib<br>
+                    <strong>Venue:</strong> Dream Lawn, Nashik
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTDOWN TIMER -->
+        <div style="margin-top: 35px; margin-bottom: 20px;">
+            <div class="sub-title">SAVE THE DATE</div>
+            <div class="section-header" style="margin-top: 4px;">Counting Down</div>
+            
+            <div class="timer-box">
+                <div class="time-card"><span id="days">00</span><label>Days</label></div>
+                <div class="time-card"><span id="hours">00</span><label>Hours</label></div>
+                <div class="time-card"><span id="mins">00</span><label>Mins</label></div>
+                <div class="time-card"><span id="secs">00</span><label>Secs</label></div>
+            </div>
+        </div>
+
+        <!-- ROYAL FOOTER WITH ARABIC JAZAKALLAH & PHONE -->
+        <div class="royal-footer-card">
+            <div class="footer-invitation-text">Awaiting Your Gracious Presence</div>
+            <div class="footer-family-name">Aijaz Khan & Family</div>
+            <a href="tel:9372622876" class="footer-phone">📞 9372622876</a>
+            <div class="jazakallah-arabic">جَزاكُمُ اللهُ خَيْرًا</div>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            document.getElementById('envelopeOverlay').classList.add('envelope-opened');
+            triggerRosePetals();
+        }
+
+        // PERFECT OVAL CANVAS DRAWING
+        const canvas = document.getElementById('scratchCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawOval(context, cx, cy, rx, ry) {
+            context.save();
+            context.beginPath();
+            context.translate(cx, cy);
+            context.scale(rx, ry);
+            context.arc(0, 0, 1, 0, 2 * Math.PI, false);
+            context.restore();
+            context.closePath();
+        }
+
+        // Draw Gold Metallic Gradient Oval
+        const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+        grad.addColorStop(0, '#d4af37');
+        grad.addColorStop(0.5, '#c29b53');
+        grad.addColorStop(1, '#a38128');
+
+        drawOval(ctx, canvas.width / 2, canvas.height / 2, canvas.width / 2 - 2, canvas.height / 2 - 2);
+        ctx.fillStyle = grad;
+        ctx.fill();
+
+        // Inner Gold Dashed Oval Ring
+        drawOval(ctx, canvas.width / 2, canvas.height / 2, canvas.width / 2 - 12, canvas.height / 2 - 12);
+        ctx.strokeStyle = '#f3e5ab';
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([4, 4]);
+        ctx.stroke();
+
+        ctx.setLineDash([]); // Reset line dash
+        ctx.fillStyle = '#3b1c24';
+        ctx.font = 'bold 12px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.fillText('✦ SCRATCH HERE ✦', canvas.width / 2, canvas.height / 2 + 4);
+
+        let isScratching = false;
+        let petalsTriggered = false;
+
+        function checkScratchProgress() {
+            if (petalsTriggered) return;
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let clearedPixels = 0;
+            for (let i = 3; i < imageData.data.length; i += 4) {
+                if (imageData.data[i] === 0) clearedPixels++;
+            }
+            if (clearedPixels > (imageData.data.length / 4) * 0.35) {
+                petalsTriggered = true;
+                triggerGoldSparkles();
+            }
+        }
+
+        function triggerRosePetals() {
+            for (let i = 0; i < 35; i++) {
+                setTimeout(() => {
+                    const petal = document.createElement('div');
+                    petal.className = 'petal-rose';
+                    petal.style.left = Math.random() * 100 + 'vw';
+                    petal.style.animationDuration = (Math.random() * 3 + 2.5) + 's';
+                    petal.style.animationDelay = (Math.random() * 0.4) + 's';
+                    document.body.appendChild(petal);
+
+                    setTimeout(() => petal.remove(), 6000);
+                }, i * 100);
+            }
+        }
+
+        function triggerGoldSparkles() {
+            for (let i = 0; i < 40; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'petal-gold-sparkle';
+                    sparkle.style.left = Math.random() * 100 + 'vw';
+                    sparkle.style.animationDuration = (Math.random() * 2.5 + 2) + 's';
+                    sparkle.style.animationDelay = (Math.random() * 0.3) + 's';
+                    document.body.appendChild(sparkle);
+
+                    setTimeout(() => sparkle.remove(), 5000);
+                }, i * 80);
+            }
+        }
+
+        function scratch(e) {
+            if (!isScratching) return;
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 22, 0, Math.PI * 2);
+            ctx.fill();
+
+            checkScratchProgress();
+        }
+
+        canvas.addEventListener('mousedown', () => isScratching = true);
+        canvas.addEventListener('mouseup', () => isScratching = false);
+        canvas.addEventListener('mousemove', scratch);
+        canvas.addEventListener('touchstart', () => isScratching = true);
+        canvas.addEventListener('touchend', () => isScratching = false);
+        canvas.addEventListener('touchmove', scratch);
+
+        function toggleWaxNote() {
+            document.getElementById('waxNote').classList.toggle('active');
+        }
+
+        const targetDate = new Date("Dec 3, 2026 18:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if(diff > 0) {
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
